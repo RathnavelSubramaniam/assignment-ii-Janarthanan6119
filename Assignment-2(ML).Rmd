@@ -1,0 +1,156 @@
+---
+title: "Assignment-2"
+author: "Jana"
+date: "18/09/2022"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(MASS)
+```
+#1.a
+```{r}
+set.seed(1) # which holds the value
+X=rnorm(100,0,1) # which is a function to generate a random numbers
+X
+
+#b.
+eps=rnorm(100,0,0.25) # 100 values will be generated from 0 to 0.25
+eps
+
+#c.
+Y= -1+0.5*X+eps
+Y
+
+# β0 is -1 & β1 is 0.5 
+
+length(Y) # which gives the length
+
+# There will be a 100 values in Y.
+
+#d.
+```
+```{r}
+plot(X,Y)
+# When X increases, Y also increases.
+```
+#e.
+```{r}
+model=lm(Y~X)
+summary(model)
+#X has a good relationship with Y
+```
+#f.
+```{r}
+plot(X,Y)
+abline(model,col="orange")
+abline(-1, 0.5, col="black")
+legend("bottomright", c("Least Square", "Regression"), col = c("red", "blue"), lty = c(1, 1))
+
+#The above plot shows the Least Square and Regression visualisation
+```
+
+
+
+
+#2.About Boston dataset
+```{r}
+boston=data.frame(Boston)
+view(boston)
+```
+#Single Linear Regression
+
+```{r}
+attach(boston)
+pd_1=lm(crim ~zn)
+summary(pd_1)
+plot(zn,crim)
+# The above things,which describes proportion of residential land zones are in Negative, but it has a Relationship with crim 
+```
+```{r}
+pd_2=lm(crim~indus)
+summary(pd_2)
+plot(indus,crim)
+# The above things which describes, indus have a good relationship with crim
+```
+```{r}
+pd_3=lm(crim~chas)
+summary(pd_3)
+plot(chas,crim)
+# The above things which describes, chas have a no relationship with crim
+```
+```{r}
+pd_4=lm(crim~nox)
+summary(pd_4)
+plot(nox,crim)
+# The above things which describes, nox have a good relationship with crim
+```
+```{r}
+pd_5=lm(crim~rm)
+summary(pd_5)
+plot(rm,crim)
+# The above things which describes, rm have a good relationship with crim
+```
+```{r}
+pd_6=lm(crim~age)
+summary(pd_6)
+plot(age,crim)
+# The above things which describes, age have a good relationship with crim
+```
+```{r}
+pd_7=lm(crim~dis)
+summary(pd_7)
+plot(dis,crim)
+# The above things which describes, dis have a good relationship with crim
+```
+```{r}
+pd_8=lm(crim~rad)
+summary(pd_8)
+plot(nox,rad)
+# The above things which describes, rad have a good relationship with crim
+```
+```{r}
+pd_9=lm(crim~tax)
+summary(pd_9)
+plot(tax,crim)
+# The above things which describes, tax have a good relationship with crim
+```
+```{r}
+pd_10=lm(crim~ptratio)
+summary(pd_10)
+plot(ptratio,crim)
+# The above things which describes, ptratio have a good relationship with crim
+```
+```{r}
+pd_11=lm(crim~black)
+summary(pd_11)
+plot(black,crim)
+# The above things which describes, black have a good relationship with crim
+```
+```{r}
+pd_12=lm(crim~lstat)
+summary(pd_12)
+plot(lstat,crim)
+# The above things which describes, lstat have a good relationship with crim
+```
+```{r}
+pd_13=lm(crim~medv)
+summary(pd_13)
+plot(medv,crim)
+# The above things which describes, medv have a good relationship with crim
+```
+#Multiple Linear Regression
+
+```{r}
+#attach(boston)
+mul=lm(crim~.,data=boston)
+summary(mul)
+predict(mul,type = "response")
+
+# Will reject the null hypothesis like “zn”, “dis”, “rad”, “black” & “medv”
+```
+
+
+
+
+
